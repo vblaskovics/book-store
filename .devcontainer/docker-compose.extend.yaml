@@ -1,0 +1,22 @@
+version: '3'
+services:
+  book-store:
+    build:
+      target: builder
+      context: .
+    volumes:
+      # mounts are relative to the first file in the list, which is a level up.
+      - ./.vscode/launch.json:/home/node/app/.vscode/launch.json:cached
+      - ./src:/home/node/app/src:cached
+      - ./test:/home/node/app/test:cached
+      - ./.eslintrc.js:/home/node/app/.eslintrc.js:cached
+      - ./.prettierrc:/home/node/app/.prettierrc:cached
+      - ./nest-cli.json:/home/node/app/nest-cli.json:cached
+      - ./package.json:/home/node/app/package.json:cached
+      - ./package-lock.json:/home/node/app/package-lock.json:cached
+      - ./README.md:/home/node/app/README.md:cached
+      - ./tsconfig.json:/home/node/app/tsconfig.json:cached
+      - ./tsconfig.build.json:/home/node/app/tsconfig.build.json:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
