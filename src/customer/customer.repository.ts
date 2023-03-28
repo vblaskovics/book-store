@@ -19,13 +19,19 @@ export class CustomerRepository {
   }
 
   createCustomer(
-    book: Omit<CustomerEntity, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>,
+    book: Omit<
+      CustomerEntity,
+      'id' | 'rentals' | 'createdAt' | 'updatedAt' | 'deletedAt'
+    >,
   ): Promise<CustomerEntity> {
     return this.repository.save(book);
   }
 
   updateCustomer(
-    book: Omit<CustomerEntity, 'createdAt' | 'updatedAt' | 'deletedAt'>,
+    book: Omit<
+      CustomerEntity,
+      'rentals' | 'createdAt' | 'updatedAt' | 'deletedAt'
+    >,
   ): Promise<CustomerEntity> {
     return this.repository.save(book);
   }

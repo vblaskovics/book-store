@@ -15,19 +15,27 @@ export class BookRepository {
   }
 
   getBookById(id: string): Promise<BookEntity> {
-    return this.repository.findOneBy({ id });
+    return this.repository.findOne({
+      select: ['id', 'author', 'releaseDate'],
+      where: { id },
+    });
   }
 
-  createBook(
-    book: Omit<BookEntity, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>,
+  async createBook(
+    book: Omit<
+      BookEntity,
+      'id' | 'createdAt' | 'rentals' | 'updatedAt' | 'deletedAt'
+    >,
   ): Promise<BookEntity> {
-    return this.repository.save(book);
+    const { id } = await this.repository.save(book);
+    return this.getBookById(id);
   }
 
-  updateBook(
-    book: Omit<BookEntity, 'createdAt' | 'updatedAt' | 'deletedAt'>,
+  async updateBook(
+    book: Omit<BookEntity, 'rentals' | 'createdAt' | 'updatedAt' | 'deletedAt'>,
   ): Promise<BookEntity> {
-    return this.repository.save(book);
+    const { id } = await this.repository.save(book);
+    return this.getBookById(id);
   }
 
   async deleteBook(id: string): Promise<void> {

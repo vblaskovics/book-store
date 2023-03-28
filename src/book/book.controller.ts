@@ -43,6 +43,17 @@ export class BookController {
     return book;
   }
 
+  @Get(':id/rentals')
+  @ApiOkResponse({ type: GetBookDTO })
+  async getRenatlsByBookId(@Param('id') bookId: string): Promise<GetBookDTO> {
+    const book = this.bookService.getBookById(bookId);
+    if (!book) {
+      throw new NotFoundException('Book not found');
+    }
+
+    return book;
+  }
+
   @Post()
   @ApiOkResponse({ type: GetBookDTO })
   createBook(@Body() book: CreateBookDTO): Promise<GetBookDTO> {

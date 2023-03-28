@@ -1,8 +1,10 @@
+import { RentalEntity } from '../rental/rental.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -20,6 +22,9 @@ export class BookEntity {
 
   @Column('date')
   releaseDate: Date;
+
+  @OneToMany(() => RentalEntity, (rental: RentalEntity) => rental.book)
+  rentals: RentalEntity[];
 
   @CreateDateColumn()
   createdAt!: Date;

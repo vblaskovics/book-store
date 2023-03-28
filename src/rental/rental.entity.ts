@@ -5,6 +5,7 @@ import {
   DeleteDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -15,12 +16,13 @@ export class RentalEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @OneToOne(() => BookEntity)
-  @JoinColumn()
+  @OneToMany(() => BookEntity, (book: BookEntity) => book.rentals)
   book: BookEntity;
 
-  @OneToOne(() => CustomerEntity)
-  @JoinColumn()
+  @OneToMany(
+    () => CustomerEntity,
+    (customer: CustomerEntity) => customer.rentals,
+  )
   customer: CustomerEntity;
 
   @CreateDateColumn()
