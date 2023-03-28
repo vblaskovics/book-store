@@ -1,38 +1,94 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Book Store App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Related docs
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- [Docker](https://docs.docker.com/)
+- [NestJS](https://docs.nestjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [JWT](https://jwt.io/introduction)
+- [Passport](https://www.passportjs.org/)
+- [class-validator](https://github.com/typestack/class-validator)
+- [class-transformer](https://github.com/typestack/class-transformer)
+- [Swagger](https://swagger.io/)
+- [OpenAPI](https://www.openapis.org/)
+- [Terminus](https://github.com/godaddy/terminus)
 
-## Description
+## Recommended IDE
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [VSCode](https://code.visualstudio.com/)
+  - [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers)
 
-## Installation
+## Configuration
 
 ```bash
-$ npm install
+$ cp .env.example .env
 ```
 
-## Running the app
+- fill `.env` with your environment variables
+
+## Docker usage
+
+### Run in devcontainer
+
+`ctr` / `cmd` + `shift` + `p` > `Dev Containers > Open Folder in Container...`
+
+## standard Docker usage
+
+### Start in development mode
+
+```bash
+# uses docker.compose.yaml and docker.compose.override.yaml by default
+$ docker compose up
+```
+
+### Re-build
+
+```bash
+# build all containers that has build configuration
+$ docker compose build
+```
+
+### Generate migration
+
+```bash
+# replace `my-migration` with the migration name that you want
+$ docker compose exec book-store \
+  npx ts-node ./node_modules/typeorm/cli.js \
+    migration:generate \
+      -d ./src/database/database.datasource.ts \
+      ./src/migrations/my-migration
+```
+
+### Run tests
+
+```bash
+# Run unit tests
+$ docker compose exec book-store npm run test
+```
+
+```bash
+# Run E2E tests
+$ docker compose exec book-store npm run test:e2e
+```
+
+### Production mode
+
+```bash
+# Start containers in production mode
+# may require to rebuild the image (use `--build` flag)
+$ docker compose -f docker-compose.yaml up
+```
+
+## Host usage
+
+### Installation
+
+```bash
+# Do a clean install
+$ npm ci
+```
+
+### Running the app
 
 ```bash
 # development
@@ -45,7 +101,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Test
 
 ```bash
 # unit tests
@@ -57,16 +113,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 

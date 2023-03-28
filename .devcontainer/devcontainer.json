@@ -11,7 +11,8 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "Orta.vscode-jest",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "cweijan.vscode-mysql-client2"
       ]
     }
   }
