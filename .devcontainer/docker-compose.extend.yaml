@@ -2,7 +2,7 @@ version: '3'
 services:
   book-store:
     build:
-      target: builder
+      target: build
       context: .
     volumes:
       # mounts are relative to the first file in the list, which is a level up.
