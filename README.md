@@ -52,7 +52,7 @@ $ docker compose build
 
 ```bash
 # replace `my-migration` with the migration name that you want
-$ docker compose exec book-store npm run migration:generate ./src/migrations
+$ docker compose exec book-store npm run migration:generate ./src/migrations/my-migration
 ```
 
 ### Run tests
