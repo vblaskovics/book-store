@@ -30,6 +30,21 @@ $ cp .env.example .env
 
 ### Run in devcontainer
 
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/95gabor/book-store)
+
+or open the project manually:
+
+```bash
+# clone the repository
+$ git clone https://github.com/95gabor/book-store
+# open the project folder
+$ cd book-store
+# open the project in vscode
+$ code .
+```
+
+and then:
+
 `ctr` / `cmd` + `shift` + `p` > `Dev Containers > Open Folder in Container...`
 
 ## standard Docker usage
