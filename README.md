@@ -52,11 +52,7 @@ $ docker compose build
 
 ```bash
 # replace `my-migration` with the migration name that you want
-$ docker compose exec book-store \
-  npx ts-node ./node_modules/typeorm/cli.js \
-    migration:generate \
-      -d ./src/database/database.datasource.ts \
-      ./src/migrations/my-migration
+$ docker compose exec book-store npm run migration:generate ./src/migrations
 ```
 
 ### Run tests

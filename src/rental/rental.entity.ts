@@ -4,10 +4,9 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
-  JoinColumn,
-  OneToMany,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
+  RelationId,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -16,14 +15,20 @@ export class RentalEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @OneToMany(() => BookEntity, (book: BookEntity) => book.rentals)
+  @ManyToOne(() => BookEntity, (book: BookEntity) => book.rentals)
   book: BookEntity;
 
-  @OneToMany(
+  @RelationId((rental: RentalEntity) => rental.book)
+  bookId: string;
+
+  @ManyToOne(
     () => CustomerEntity,
     (customer: CustomerEntity) => customer.rentals,
   )
   customer: CustomerEntity;
+
+  @RelationId((rental: RentalEntity) => rental.customer)
+  customerId: string;
 
   @CreateDateColumn()
   createdAt!: Date;
