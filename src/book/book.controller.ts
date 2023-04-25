@@ -45,7 +45,7 @@ export class BookController {
 
   @Get(':id/rentals')
   @ApiOkResponse({ type: GetBookDTO })
-  async getRenatlsByBookId(@Param('id') bookId: string): Promise<GetBookDTO> {
+  async getRentalsByBookId(@Param('id') bookId: string): Promise<GetBookDTO> {
     const book = this.bookService.getBookById(bookId);
     if (!book) {
       throw new NotFoundException('Book not found');
