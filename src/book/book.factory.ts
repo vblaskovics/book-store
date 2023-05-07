@@ -1,5 +1,5 @@
 import { setSeederFactory } from 'typeorm-extension';
-import { BookEntity } from '../../book/book.entity';
+import { BookEntity } from './book.entity';
 
 export default setSeederFactory(BookEntity, (faker) => {
   const book = new BookEntity();

@@ -5,8 +5,8 @@ import { dataSourceOptions } from './database.datasource';
 const options: DataSourceOptions & SeederOptions = {
   ...dataSourceOptions,
 
-  seeds: ['src/database/seeds/**/*{.ts,.js}'],
-  factories: ['src/database/factories/**/*{.ts,.js}'],
+  seeds: ['src/**/**/*seeder.{ts,js}'],
+  factories: ['src/**/**/*factory.{ts,js}'],
 };
 
 export const dataSource = new DataSource(options);
