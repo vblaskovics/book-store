@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import path from 'path/posix';
+import { resolve } from 'path/posix';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import path from 'path/posix';
         database: configService.get('DATABASE'),
         autoLoadEntities: true,
         migrationsRun: true,
-        migrations: [path.resolve(__dirname, '..', 'migrations', '*{.ts,.js}')],
+        migrations: [resolve(__dirname, '..', 'migrations', '*{.ts,.js}')],
       }),
     }),
   ],
