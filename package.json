@@ -19,7 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js -d ./src/database/database.datasource.ts",
-    "migration:generate": "npm run typeorm migration:generate"
+    "migration:generate": "npm run typeorm migration:generate",
+    "migration:seed": "ts-node ./src/seed/run.seeder.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -38,7 +39,8 @@
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "typeorm": "^0.3.14"
+    "typeorm": "^0.3.14",
+    "typeorm-extension": "^2.8.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
