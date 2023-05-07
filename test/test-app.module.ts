@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSourceOptions } from 'typeorm';
+import { AuthModule } from '../src/auth';
 import { dataSourceOptions } from '../src/database/database.datasource';
 import { AppController } from '../src/app.controller';
 import { AppService } from '../src/app.service';
@@ -11,7 +12,7 @@ const testDbConnection: DataSourceOptions = {
 };
 
 @Module({
-  imports: [TypeOrmModule.forRoot(testDbConnection)],
+  imports: [AuthModule, TypeOrmModule.forRoot(testDbConnection)],
   controllers: [AppController],
   providers: [AppService],
 })

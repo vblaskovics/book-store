@@ -16,7 +16,7 @@ import { resolve } from 'path/posix';
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE'),
         autoLoadEntities: true,
-        migrationsRun: true,
+        migrationsRun: false,
         migrations: [resolve(__dirname, '..', 'migrations', '*{.ts,.js}')],
       }),
     }),

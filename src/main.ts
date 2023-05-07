@@ -20,7 +20,9 @@ async function bootstrap() {
   app.enableVersioning();
 
   const dataSource = app.get(DataSource);
-  await migrateDatabase(dataSource, logger);
+
+  // TODO uncomment this line to enable automatic database migration
+  // await migrateDatabase(dataSource, logger);
 
   const config = new DocumentBuilder()
     .setTitle('Book store')
