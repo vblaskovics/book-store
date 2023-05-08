@@ -43,6 +43,19 @@ describe('BookController (e2e)', () => {
           .set('Authorization', `${bearerToken}`)
           .expect(200);
       });
+
+      it('should return a list of books', () => {
+        return request(app.getHttpServer())
+          .get('/books')
+          .set('Authorization', `${bearerToken}`)
+          .expect(200)
+          .expect((res) => {
+            expect(res.body.length).toBeGreaterThan(0);
+            expect(res.body[0]).toHaveProperty('id');
+            expect(res.body[0]).toHaveProperty('title');
+            expect(res.body[0]).toHaveProperty('author');
+          });
+      });
     });
   });
 });

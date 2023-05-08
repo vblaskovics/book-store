@@ -18,7 +18,6 @@ export default class BookSeeder implements Seeder {
     ]);
 
     const factory = factoryManager.get(BookEntity);
-    await factory.save();
-    // await factory.saveMany(5);
+    await factory.saveMany(5);
   }
 }
