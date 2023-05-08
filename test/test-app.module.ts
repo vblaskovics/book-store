@@ -8,7 +8,7 @@ import { AppService } from '../src/app.service';
 
 const testDbConnection: DataSourceOptions = {
   ...dataSourceOptions,
-  // rewrite props if needed for test
+  // overwrite props if needed for test
 };
 
 @Module({
