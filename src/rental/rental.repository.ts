@@ -11,7 +11,14 @@ export class RentalRepository {
   ) {}
 
   async getRentalsByBookId(bookId: string): Promise<RentalEntity[]> {
-    const rentals = await this.repository.find({ where: { bookId } });
+    const rentals = await this.repository.find({
+      relations: ['book', 'customer'],
+      where: {
+        book: {
+          id: bookId,
+        },
+      },
+    });
     return rentals;
   }
 }

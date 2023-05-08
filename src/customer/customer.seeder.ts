@@ -1,24 +1,21 @@
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
-import { BookEntity } from './book.entity';
+import { CustomerEntity } from './customer.entity';
 
 export default class BookSeeder implements Seeder {
   public async run(
     dataSource: DataSource,
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
-    const repository = dataSource.getRepository(BookEntity);
+    const repository = dataSource.getRepository(CustomerEntity);
 
     await repository.insert([
       {
         id: '1',
-        author: 'J.K. Rowling',
-        releaseDate: '1997-06-26',
-        title: "Harry Potter and the Philosopher's Stone",
+        firstName: 'John',
+        lastName: 'Doe',
+        birthDate: '1990-01-01',
       },
     ]);
-
-    const factory = factoryManager.get(BookEntity);
-    await factory.saveMany(5);
   }
 }
