@@ -8,3 +8,7 @@ export class GetRentalDTO {
   updatedAt: Date;
   deletedAt: Date;
 }
+
+export class RentBookDto {
+  customerId: string;
+}

@@ -31,30 +31,37 @@ describe('RentalController (e2e)', () => {
   describe('Unauthorized access', () => {
     it('should return 401 if no access token is provided', () => {
       return request(app.getHttpServer())
-        .get(`${URL}/active/book/1`)
+        .get(`${URL}/book/1`)
         .set('Authorization', `Bearer invalid token`)
         .expect(401);
     });
   });
 
   describe('Authorized access', () => {
-    describe('GET /rentals/active', () => {
-      it('should return 200', () => {
-        return request(app.getHttpServer())
-          .get(`${URL}/active/book/1`)
-          .set('Authorization', `${bearerToken}`)
-          .expect(200);
-      });
-
+    describe('GET /rentals/book/:bookId', () => {
       it('should return active rentals for a book with ID', () => {
         return request(app.getHttpServer())
-          .get(`${URL}/active/book/1`)
+          .get(`${URL}/book/1`)
           .set('Authorization', `${bearerToken}`)
           .expect(200)
           .expect((res) => {
             expect(res.body.length).toBeGreaterThan(0);
             expect(res.body[0].customer.id).toBe('1');
             expect(res.body[0].book.id).toBe('1');
+          });
+      });
+    });
+    describe('POST /rentals/book/:bookId', () => {
+      it('should rent a book with ID', () => {
+        return request(app.getHttpServer())
+          .post(`${URL}/book/2`)
+          .set('Authorization', `${bearerToken}`)
+          .set('Body', JSON.stringify({ customerId: '1' }))
+          .expect(201)
+          .expect((res) => {
+            expect(res.body).toBeDefined();
+            expect(res.body.customer.firstName).toBe('John');
+            expect(res.body.book.author).toBe('J.K. Rowling');
           });
       });
     });

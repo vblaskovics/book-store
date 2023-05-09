@@ -16,6 +16,12 @@ export default class BookSeeder implements Seeder {
         releaseDate: '1997-06-26',
         title: "Harry Potter and the Philosopher's Stone",
       },
+      {
+        id: '2',
+        author: 'J.K. Rowling',
+        releaseDate: '1998-07-02',
+        title: 'Harry Potter and the Chamber of Secrets',
+      },
     ]);
 
     const factory = factoryManager.get(BookEntity);
